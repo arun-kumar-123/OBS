@@ -1,4 +1,4 @@
-package com.capgemini.obs.DAO;
+package com.capgemini.obs.dao;
 
 import java.util.List;
 
@@ -8,27 +8,18 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import com.capgemini.obs.Entity.OrderInfo;
+import com.capgemini.obs.entity.OrderInfo;
 
 @Repository
-public class OrderDao implements OrderDaoInterfac {
-
+public class OrderDao {
+	
 	@PersistenceContext
 	EntityManager em;
-
-	@Override
-	public OrderInfo getOrder(long Order_Id) {
-		// TODO Auto-generated method stub
-			String str = "SELECT orderInfo FROM OrderInfo orderInfo WHERE orderInfo.Order_Id="
-					+ Order_Id;
-			TypedQuery<OrderInfo> query = em.createQuery(str, OrderInfo.class);
-			return query.getSingleResult();
-		}
-
+	
 	public List<OrderInfo> getAllOrder() {
-		String str = "SELECT diagnosticCenter FROM DiagnosticCenter diagnosticCenter";
+		String str = "SELECT orderInfo FROM OrderInfo orderInfo";
 		TypedQuery<OrderInfo> query = em.createQuery(str, OrderInfo.class);
 		return query.getResultList();
 	}
-	
+
 }

@@ -1,6 +1,6 @@
-package com.capgemini.obs.Exception;
+package com.capgemini.obs.exception;
 
-public class OrderException extends Exception {
+public class OrderException extends Exception{
 	
 	/**
 	 * 
@@ -12,5 +12,3 @@ public class OrderException extends Exception {
 	}
 
 }
-
-

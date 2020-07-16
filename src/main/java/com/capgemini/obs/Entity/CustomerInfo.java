@@ -1,4 +1,4 @@
-package com.capgemini.obs.Entity;
+package com.capgemini.obs.entity;
 
 import java.util.List;
 
@@ -29,27 +29,25 @@ public class CustomerInfo {
 	@Column(name="customer_Id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
     @SequenceGenerator(sequenceName = "customer_sequence", allocationSize = 100, name = "customer_seq")
-	private Long customerId;
+	private Integer customerId;
 	
 	
 	@NotEmpty(message = "name is mandatory")
 	@Column(name="FullName")
-	@Length(min=8, max=30)
+	@Length(min=2, max=30)
 	private String FullName;
 	
 	@NotEmpty(message = "Email is mandatory")
 	@Column(name="Email")
-	@Length(min=10, max=64)
+	@Length(min=2, max=64)
 	private String Email ;
 	
 	@NotEmpty(message = "password is mandatory")
 	@Column(name="password")
-	@Length(min=8, max=30)
+	@Length(min=2, max=30)
 	private String password;
 	
-	@NotEmpty(message = "PhoneNumber is mandatory")
 	@Column(name="PhoneNumber")
-	@Length(min=10, max=15)
 	private Long PhoneNumber;
 	
 	@NotEmpty(message = "city name is mandatory")
@@ -59,7 +57,7 @@ public class CustomerInfo {
 	
 	@NotEmpty(message = "Address is mandatory")
 	@Column(name="Address")
-	@Length(min=10, max=128)
+	@Length(min=2, max=128)
 	private String Address;
 	
 	@NotEmpty(message = "ZipCode is mandatory")
@@ -82,102 +80,141 @@ public class CustomerInfo {
 	@JoinColumn(name = "customer_Id", referencedColumnName = "customer_Id")
 	private List<BookInfo> BookInfo;
 
-	public Long getCustomerId() {
+
+
+	public Integer getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(Long customerId) {
+
+
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
+
+
 
 	public String getFullName() {
 		return FullName;
 	}
 
+
+
 	public void setFullName(String fullName) {
 		FullName = fullName;
 	}
+
+
 
 	public String getEmail() {
 		return Email;
 	}
 
+
+
 	public void setEmail(String email) {
 		Email = email;
 	}
+
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+
 
 	public Long getPhoneNumber() {
 		return PhoneNumber;
 	}
 
+
+
 	public void setPhoneNumber(Long phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
+
+
 
 	public String getCity() {
 		return city;
 	}
 
+
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
+
 
 	public String getAddress() {
 		return Address;
 	}
 
+
+
 	public void setAddress(String address) {
 		Address = address;
 	}
+
+
 
 	public String getZipCode() {
 		return ZipCode;
 	}
 
+
+
 	public void setZipCode(String zipCode) {
 		ZipCode = zipCode;
 	}
+
+
 
 	public String getCountry() {
 		return Country;
 	}
 
+
+
 	public void setCountry(String country) {
 		Country = country;
 	}
+
+
 
 	public List<OrderInfo> getOrderInfo() {
 		return OrderInfo;
 	}
 
+
+
 	public void setOrderInfo(List<OrderInfo> orderInfo) {
 		OrderInfo = orderInfo;
 	}
+
+
 
 	public List<BookInfo> getBookInfo() {
 		return BookInfo;
 	}
 
+
+
 	public void setBookInfo(List<BookInfo> bookInfo) {
 		BookInfo = bookInfo;
 	}
 
-	@Override
-	public String toString() {
-		return "CustomerInfo [customerId=" + customerId + ", FullName=" + FullName + ", Email=" + Email + ", password="
-				+ password + ", PhoneNumber=" + PhoneNumber + ", city=" + city + ", Address=" + Address + ", ZipCode="
-				+ ZipCode + ", Country=" + Country + ", OrderInfo=" + OrderInfo + ", BookInfo=" + BookInfo + "]";
-	}
 
-	public CustomerInfo(Long customerId,
+
+	public CustomerInfo(Integer customerId,
 			@NotEmpty(message = "name is mandatory") @Length(min = 8, max = 30) String fullName,
 			@NotEmpty(message = "Email is mandatory") @Length(min = 10, max = 64) String email,
 			@NotEmpty(message = "password is mandatory") @Length(min = 8, max = 30) String password,
@@ -186,7 +223,7 @@ public class CustomerInfo {
 			@NotEmpty(message = "Address is mandatory") @Length(min = 10, max = 128) String address,
 			@NotEmpty(message = "ZipCode is mandatory") @Length(min = 3, max = 24) String zipCode,
 			@NotEmpty(message = "Country name is mandatory") @Length(min = 3, max = 64) String country,
-			List<com.capgemini.obs.Entity.OrderInfo> orderInfo, List<com.capgemini.obs.Entity.BookInfo> bookInfo) {
+			List<com.capgemini.obs.entity.OrderInfo> orderInfo, List<com.capgemini.obs.entity.BookInfo> bookInfo) {
 		super();
 		this.customerId = customerId;
 		FullName = fullName;
@@ -200,6 +237,17 @@ public class CustomerInfo {
 		OrderInfo = orderInfo;
 		BookInfo = bookInfo;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "CustomerInfo [customerId=" + customerId + ", FullName=" + FullName + ", Email=" + Email + ", password="
+				+ password + ", PhoneNumber=" + PhoneNumber + ", city=" + city + ", Address=" + Address + ", ZipCode="
+				+ ZipCode + ", Country=" + Country + ", OrderInfo=" + OrderInfo + ", BookInfo=" + BookInfo + "]";
+	}
+
+
 
 	public CustomerInfo() {
 		super();

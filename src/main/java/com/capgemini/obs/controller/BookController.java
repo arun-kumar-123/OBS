@@ -1,18 +1,11 @@
 package com.capgemini.obs.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.obs.entity.BookInfo;
 import com.capgemini.obs.entity.Category;
@@ -20,25 +13,12 @@ import com.capgemini.obs.entity.CustomerInfo;
 import com.capgemini.obs.entity.OrderInfo;
 import com.capgemini.obs.exception.OrderException;
 import com.capgemini.obs.service.BookService;
-import com.capgemini.obs.service.OrderServiceImpl;
 
-@CrossOrigin
-@RestController
-public class OrderController {
+
+public class BookController {
 	
-	@Autowired
-	OrderServiceImpl orderservice;
 	@Autowired
 	BookService bookService;
-	
-	@GetMapping("/orders")
-	public List<OrderInfo> getAllOrder() throws OrderException {
-		try{
-			return orderservice.getAllOrder();
-		}catch (Exception exception) {
-			throw new OrderException(exception.getMessage());
-		}
-	}
 	
 	@PostMapping("/addCategory")
 	public ResponseEntity<String> addCategory(@RequestBody Category category)
@@ -87,6 +67,8 @@ public class OrderController {
 			throw new OrderException("ID already exists");
 		}
 	}
+
+
 
 
 }

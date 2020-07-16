@@ -1,4 +1,5 @@
-package com.capgemini.obs.Entity;
+package com.capgemini.obs.entity;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,43 +15,12 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name="OrderInfo")
 public class OrderInfo {
+	
 @Id
-
 @Column(name="order_Id")
 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq")
 @SequenceGenerator(sequenceName = "order_sequence", allocationSize = 10, name = "order_seq")
-private Long Order_Id;
-
-@NotEmpty(message = "RecipientName is mandatory")
-@Column(name="RecipientName")
-@Length(min=8, max=30)
-private String RecipientName;
-
-@NotEmpty(message = "RecipientPhone is mandatory")
-@Column(name="RecipientPhone")
-@Length(min=10, max=15)
-private Long RecipientPhone;
-
-@NotEmpty(message = "StreetAddress is mandatory")
-@Column(name="StreetAddress")
-@Length(min=10, max=128)
-private String StreetAddress;
-
-@NotEmpty(message = "city name is mandatory")
-@Column(name="city")
-@Length(min=3, max=32)
-private String city;
-
-@NotEmpty(message = "ZipCode is mandatory")
-@Column(name="ZipCode")
-@Length(min=3, max=24)
-private String ZipCode;
-
-@NotEmpty(message = "Country name is mandatory")
-@Column(name="Country")
-@Length(min=3, max=64)
-private String Country;
-
+private Integer order_Id;
 
 @Column(name="Quantity")
 private Integer Quantity;
@@ -67,65 +37,19 @@ private Float Total;
 @Column(name="OrderStatus")
 private String OrderStatus;
 
-@NotEmpty(message = "PaymentMethos is mandatory")
-@Column(name="PaymentMethos")
-@Length(min=8, max=16)
-private String PaymentMethos;
+@NotEmpty(message = "PaymentMethod is mandatory")
+@Column(name="PaymentMethod")
+@Length(min=2, max=16)
+private String PaymentMethod;
 
-public Long getOrderId() {
-	return Order_Id;
+
+
+public Integer getOrder_Id() {
+	return order_Id;
 }
 
-public void setOrderId(Long order_Id) {
-	Order_Id = order_Id;
-}
-
-public String getRecipientName() {
-	return RecipientName;
-}
-
-public void setRecipientName(String recipientName) {
-	RecipientName = recipientName;
-}
-
-public Long getRecipientPhone() {
-	return RecipientPhone;
-}
-
-public void setRecipientPhone(Long recipientPhone) {
-	RecipientPhone = recipientPhone;
-}
-
-public String getStreetAddress() {
-	return StreetAddress;
-}
-
-public void setStreetAddress(String streetAddress) {
-	StreetAddress = streetAddress;
-}
-
-public String getCity() {
-	return city;
-}
-
-public void setCity(String city) {
-	this.city = city;
-}
-
-public String getZipCode() {
-	return ZipCode;
-}
-
-public void setZipCode(String zipCode) {
-	ZipCode = zipCode;
-}
-
-public String getCountry() {
-	return Country;
-}
-
-public void setCountry(String country) {
-	Country = country;
+public void setOrder_Id(Integer order_Id) {
+	this.order_Id = order_Id;
 }
 
 public Integer getQuantity() {
@@ -160,44 +84,30 @@ public void setOrderStatus(String orderStatus) {
 	OrderStatus = orderStatus;
 }
 
-public String getPaymentMethos() {
-	return PaymentMethos;
+public String getPaymentMethod() {
+	return PaymentMethod;
 }
 
-public void setPaymentMethos(String paymentMethos) {
-	PaymentMethos = paymentMethos;
+public void setPaymentMethod(String paymentMethod) {
+	PaymentMethod = paymentMethod;
 }
+
 
 @Override
 public String toString() {
-	return "OrderInfo [Order_Id=" + Order_Id + ", RecipientName=" + RecipientName + ", RecipientPhone=" + RecipientPhone
-			+ ", StreetAddress=" + StreetAddress + ", city=" + city + ", ZipCode=" + ZipCode + ", Country=" + Country
-			+ ", Quantity=" + Quantity + ", SubToatl=" + SubToatl + ", Total=" + Total + ", OrderStatus=" + OrderStatus
-			+ ", PaymentMethos=" + PaymentMethos + "]";
+	return "OrderInfo [order_Id=" + order_Id + ", Quantity=" + Quantity + ", SubToatl=" + SubToatl + ", Total=" + Total
+			+ ", OrderStatus=" + OrderStatus + ", PaymentMethod=" + PaymentMethod + "]";
 }
 
-public OrderInfo(Long orderId,
-		@NotEmpty(message = "RecipientName is mandatory") @Length(min = 8, max = 30) String recipientName,
-		@NotEmpty(message = "RecipientPhone is mandatory") @Length(min = 10, max = 15) Long recipientPhone,
-		@NotEmpty(message = "StreetAddress is mandatory") @Length(min = 10, max = 128) String streetAddress,
-		@NotEmpty(message = "city name is mandatory") @Length(min = 3, max = 32) String city,
-		@NotEmpty(message = "ZipCode is mandatory") @Length(min = 3, max = 24) String zipCode,
-		@NotEmpty(message = "Country name is mandatory") @Length(min = 3, max = 64) String country, Integer quantity,
-		Float subToatl, Float total, String orderStatus,
-		@NotEmpty(message = "PaymentMethos is mandatory") @Length(min = 8, max = 16) String paymentMethos) {
+public OrderInfo(Integer order_Id, Integer quantity, Float subToatl, Float total, String orderStatus,
+		@NotEmpty(message = "PaymentMethod is mandatory") @Length(min = 2, max = 16) String paymentMethod) {
 	super();
-	Order_Id = orderId;
-	RecipientName = recipientName;
-	RecipientPhone = recipientPhone;
-	StreetAddress = streetAddress;
-	this.city = city;
-	ZipCode = zipCode;
-	Country = country;
+	this.order_Id = order_Id;
 	Quantity = quantity;
 	SubToatl = subToatl;
 	Total = total;
 	OrderStatus = orderStatus;
-	PaymentMethos = paymentMethos;
+	PaymentMethod = paymentMethod;
 }
 
 public OrderInfo() {
